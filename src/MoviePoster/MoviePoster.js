@@ -5,7 +5,7 @@ function MoviePoster({ title, poster, votes }) {
     <section className='MoviePoster'>
       <img src={poster} alt={`${title} poster`} />
       <h2>{title}</h2>
-      <p>Votes: {votes}</p>
+      <p>{votes}</p>
     </section>
   );
 }
