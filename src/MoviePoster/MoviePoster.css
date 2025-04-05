@@ -10,6 +10,31 @@
     border-radius: 10px;
 }
 
+.MoviePoster:hover {
+    cursor: pointer;
+    animation: bubble 0.4s ease-in-out
+}
+
+@keyframes bubble {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes move {
+    100% {
+        transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+}
+
 h2 {
     display: none;
 }
