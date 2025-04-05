@@ -12,7 +12,7 @@
 
 .MoviePoster:hover {
     cursor: pointer;
-    animation: bubble 0.4s ease-in-out
+    animation: bubble 0.6s ease-in-out
 }
 
 @keyframes bubble {
