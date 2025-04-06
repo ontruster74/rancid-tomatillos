@@ -4,7 +4,7 @@ import MoviePoster from "../MoviePoster/MoviePoster";
 import moviePosters from "../data/movie_posters"
 
 
-function MoviesContainer() {
+function MoviesContainer({ onPosterClick }) {
   return (
       <section className='MoviesContainer'>
         {moviePosters.map(movie => (
@@ -13,6 +13,7 @@ function MoviesContainer() {
           title={movie.title}
           poster={movie.poster_path}
           votes={movie.vote_count}
+          onPosterClick={() => onPosterClick(movie)}
           />
         ))}
       </section>

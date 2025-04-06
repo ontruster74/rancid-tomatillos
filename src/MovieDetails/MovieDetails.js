@@ -1,15 +1,19 @@
 import './MovieDetails.css';
-// import MoviePoster from '../MoviePoster/MoviePoster';
-import moviePosters from '../data/movie_posters';
 import movieDetails from '../data/movie_details';
 
 
-function MovieDetails() {
+function MovieDetails({ movie, goHome }) {
   return (
     <section className='MovieDetails'>
-      <img src={poster} alt={`${title} poster`}/>
-      <h2>{title}</h2>
-      <p></p>
+      <button onClick={goHome}>Home</button>
+      <img src={movie.backdrop_path} alt={`${movieDetails.title} poster`}/>
+      <h2>{movie.title}</h2>
+      <div className="genre-container">
+        {movie.genre_ids.map((genre, index) => (
+          <div key={index}>{genre}</div>
+        ))}
+      </div>
+      <p>{movie.overview}</p>
     </section>
   );
 }
