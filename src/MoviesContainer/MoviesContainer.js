@@ -1,6 +1,6 @@
 import './MoviesContainer.css';
 import MoviePoster from "../MoviePoster/MoviePoster";
-import "./MoviesContainer.css";
+// import "./MoviesContainer.css";
 import moviePosters from "../data/movie_posters"
 
 
