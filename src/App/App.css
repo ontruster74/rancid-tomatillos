@@ -23,11 +23,3 @@ h1 {
 
 }
 
-p {
-  font-size: 20px;
-  text-align: center;
-  /* margin-top: 10px; */
-  color: black;
-  background-color: white;
-  border-radius: 0px 0px 10px 10px;
-}
