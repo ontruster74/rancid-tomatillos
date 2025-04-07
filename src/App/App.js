@@ -1,5 +1,6 @@
 import './App.css';
 import searchIcon from '../icons/search.png';
+import homeIcon from '../icons/home.png'
 
 // Example imports (for later):
 import { useState, useEffect } from 'react';
@@ -24,6 +25,7 @@ function App() {
       <header>
         <h1>rancid tomatillos</h1>
         <div></div>
+        {chosenMovie && (<button class="homeButton" onClick={goHome}><img src={homeIcon} alt="Home Button" /></button>)}
       </header>
       {chosenMovie ? ( <MovieDetails movie={movieDetails} goHome={goHome} /> ) : ( <MoviesContainer onPosterClick={handlePosterClick} />)}
     </main>

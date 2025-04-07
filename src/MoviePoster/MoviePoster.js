@@ -4,7 +4,7 @@ function MoviePoster({ title, poster, votes, onPosterClick }) {
   return (
     <section className='MoviePoster' onClick={onPosterClick}>
       <img src={poster} alt={`${title} poster`} />
-      <h2>{title}</h2>
+      {/* <h2>{title}</h2> */}
       <p>{votes}</p>
     </section>
   );

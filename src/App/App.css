@@ -31,3 +31,12 @@ p {
   background-color: white;
   border-radius: 0px 0px 10px 10px;
 }
+
+.homeButton {
+  width: 50px;
+  background-image: linear-gradient(to right, #3e49b1, purple);
+}
+
+.homeButton:hover {
+  cursor: pointer;
+}
