@@ -10,6 +10,7 @@ import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 
 function App() {
+
   const [chosenMovie, setChosenMovie] = useState(null)
 
   function handlePosterClick(movie) {
@@ -18,6 +19,25 @@ function App() {
 
   function goHome() {
     setChosenMovie(null);
+    
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    setMovies(moviePosters);
+  }, [])
+
+  const addVote = (movieId) => {
+    setMovies(movies.map((movie) => 
+        (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count + 1 } : movie
+      )
+    )
+  }
+
+  const subtractVote = (movieId) => {
+    setMovies(movies.map((movie) => 
+        (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count - 1 } : movie
+      )
+    )
   }
 
   return (
@@ -28,8 +48,11 @@ function App() {
         {chosenMovie && (<button class="homeButton" onClick={goHome}><img src={homeIcon} alt="Home Button" /></button>)}
       </header>
       {chosenMovie ? ( <MovieDetails movie={movieDetails} goHome={goHome} /> ) : ( <MoviesContainer onPosterClick={handlePosterClick} />)}
+      </header>
+      <MoviesContainer movies={movies} onAddVote={addVote} onSubtractVote={subtractVote}/>
     </main>
   );
 }
 
 export default App;
+

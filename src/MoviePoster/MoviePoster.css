@@ -21,7 +21,7 @@
     }
 
     50% {
-        transform: scale(1.2);
+        transform: scale(1.1);
     }
 
     100% {
@@ -39,6 +39,34 @@
     display: none;
 } */
 
-/* use a footer to place the votes? */
-/* remove titles of movies */
-/* fit poster to the container(or vise versa) */
+.VoteFooter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: black;
+    width: 100%;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.VoteButton {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    background: black;
+    font-weight: bold;
+}
+
+.VoteButton:hover {
+    background: #ddd;
+}
+
+.VoteCount {
+    min-width: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
