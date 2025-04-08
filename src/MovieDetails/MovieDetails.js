@@ -1,9 +1,18 @@
 import './MovieDetails.css';
+import movieDetails from '../data/movie_details';
 
-function MovieDetails() {
+
+function MovieDetails({ movie, goHome }) {
   return (
     <section className='MovieDetails'>
-      <p>Movie Details go here!</p>
+      <img src={movie.backdrop_path} alt={`${movieDetails.title} poster`}/>
+      <h2 className='movie-title'>{movie.title}</h2>
+      <div className="genre-container">
+        {movie.genre_ids.map((genre, index) => (
+          <div key={index} className="genre-tag">{genre}</div>
+        ))}
+      </div>
+      <p className="movie-overview">{movie.overview}</p>
     </section>
   );
 }
