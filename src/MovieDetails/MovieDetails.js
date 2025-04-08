@@ -1,8 +1,12 @@
 import './MovieDetails.css';
 import movieDetails from '../data/movie_details';
+import { useState, useEffect } from 'react';
 
 
-function MovieDetails({ movie, goHome }) {
+function MovieDetails({ movie }) {
+  const [movieDetails, setMovieDetails] = useState(null);
+
+  
   return (
     <section className='MovieDetails'>
       <img src={movie.backdrop_path} alt={`${movieDetails.title} poster`}/>

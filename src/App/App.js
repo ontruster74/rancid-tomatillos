@@ -19,7 +19,8 @@ function App() {
 
   function goHome() {
     setChosenMovie(null);
-    
+  }
+
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -47,12 +48,18 @@ function App() {
         <div></div>
         {chosenMovie && (<button class="homeButton" onClick={goHome}><img src={homeIcon} alt="Home Button" /></button>)}
       </header>
-      {chosenMovie ? ( <MovieDetails movie={movieDetails} goHome={goHome} /> ) : ( <MoviesContainer onPosterClick={handlePosterClick} />)}
-      </header>
-      <MoviesContainer movies={movies} onAddVote={addVote} onSubtractVote={subtractVote}/>
+      {chosenMovie ? ( 
+        <MovieDetails movie={movieDetails} goHome={goHome} /> 
+        ) : ( 
+          <MoviesContainer 
+          movies={movies} 
+          onAddVote={addVote} 
+          onSubtractVote={subtractVote}
+          onPosterClick={handlePosterClick} 
+        />
+      )}
     </main>
   );
 }
 
 export default App;
-
