@@ -1,31 +1,36 @@
 import './App.css';
-import searchIcon from '../icons/search.png';
+//import searchIcon from '../icons/search.png';
 
 // Example imports (for later):
 import { useState, useEffect } from 'react';
-import moviePosters from '../data/movie_posters';
-import movieDetails from '../data/movie_details';
+// import moviePosters from '../data/movie_posters';
+// import movieDetails from '../data/movie_details';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
+import { fetchMovies, updateMovieVotes } from '../utilities/api';
 
 function App() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    setMovies(moviePosters);
+    fetchMovies()
+      .then((movieData) => {setMovies(movieData)})
+      .catch((error) => {console.error('Something went wrong while fetching movie data:', error)})
   }, [])
 
   const addVote = (movieId) => {
-    setMovies(movies.map((movie) => 
+    updateMovieVotes(movieId, 'up')
+      .then(setMovies(movies.map((movie) => 
         (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count + 1 } : movie
       )
-    )
+    ))
   }
 
   const subtractVote = (movieId) => {
-    setMovies(movies.map((movie) => 
+    updateMovieVotes(movieId, 'down')
+      .then(setMovies(movies.map((movie) => 
         (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count - 1 } : movie
       )
-    )
+    ))
   }
 
   return (
