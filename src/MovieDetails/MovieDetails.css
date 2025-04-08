@@ -1,0 +1,36 @@
+.MovieDetails {
+    /* background: white; */
+    width: 90%;
+    padding: 10px;
+    margin: 20px;
+}
+
+.genre-container {
+    background-color: white;
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+}
+
+.genre-tag {
+    background: darkturquoise;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+}
+
+img {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.movie-overview {
+    padding: 5px;
+}
+
+.movie-title {
+background-color: white;
+display: flex;
+justify-content: center;
+color: indigo;
+padding: 5px;
+}

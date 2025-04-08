@@ -1,9 +1,11 @@
 import './MoviePoster.css';
 
-function MoviePoster({ id, title, poster, votes, onAddVote, onSubtractVote }) {
+function MoviePoster({ id, title, poster, votes, onPosterClick, onAddVote, onSubtractVote }) {
   return (
-    <section className='MoviePoster'>
+    <section className='MoviePoster' onClick={onPosterClick}>
       <img src={poster} alt={`${title} poster`} />
+      {/* <h2>{title}</h2> */}
+      <p>{votes}</p>
       <h2>{title}</h2>
       <div className='VoteFooter'>
         <button className="VoteButton" onClick={() => onSubtractVote(id)}>-</button>
@@ -13,5 +15,7 @@ function MoviePoster({ id, title, poster, votes, onAddVote, onSubtractVote }) {
     </section>
   );
 }
+
+
 
 export default MoviePoster;
