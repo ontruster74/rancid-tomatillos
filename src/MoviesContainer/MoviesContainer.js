@@ -20,5 +20,5 @@ function MoviesContainer({ movies, onAddVote, onSubtractVote, onPosterClick }) {
       </section>
   );
 }
- 
+
 export default MoviesContainer;
