@@ -8,10 +8,7 @@ function MoviesContainer({ movies, onAddVote, onSubtractVote, onPosterClick }) {
         {movies.map(movie => (
           <MoviePoster
           key={movie.id}
-          id={movie.id}
-          title={movie.title}
-          poster={movie.poster_path}
-          votes={movie.vote_count}
+          movie={movie}
           onPosterClick={() => onPosterClick(movie)}
           onAddVote={onAddVote}
           onSubtractVote={onSubtractVote}
