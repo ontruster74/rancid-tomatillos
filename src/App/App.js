@@ -1,16 +1,16 @@
 import './App.css';
 // import searchIcon from '../icons/search.png';
-import homeIcon from '../icons/home.png'
 
-// Example imports (for later):
 import { useState, useEffect } from 'react';
-// import moviePosters from '../data/movie_posters';
-// import movieDetails from '../data/movie_details';
-import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import { fetchMovies, updateMovieVotes } from '../utilities/api';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+
+import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 
 function App() {
+  /*
   const [chosenMovie, setChosenMovie] = useState(null)
 
   function handlePosterClick(movie) {
@@ -20,6 +20,7 @@ function App() {
   function goHome() {
     setChosenMovie(null);
   }
+  */
   
   const [movies, setMovies] = useState([]);
   
@@ -50,6 +51,31 @@ return (
       <header>
         <h1>rancid tomatillos</h1>
         <div></div>
+      </header>
+      <Router>
+        <Routes>
+          <Route path="/"
+          element={<MoviesContainer 
+            movies={movies} 
+            onAddVote={addVote} 
+            onSubtractVote={subtractVote}
+            />} />
+          <Route path="/movies/:id"
+          element={<MovieDetails />} />
+        </Routes>
+      </Router>
+    </main>
+  );
+}
+
+export default App;
+
+/*
+return (
+  <main className='App'>
+      <header>
+        <h1>rancid tomatillos</h1>
+        <div></div>
         {chosenMovie && (<button className="homeButton" onClick={goHome}><img src={homeIcon} alt="Home Button" /></button>)}
       </header>
       {chosenMovie ? ( 
@@ -65,5 +91,6 @@ return (
     </main>
   );
 }
+*/
 
-export default App;
+
