@@ -1,13 +1,11 @@
 import './MovieDetails.css';
-import homeIcon from '../icons/home.png'
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom'
 
 function MovieDetails() {
-  const navigate = useNavigate()
-
   const { id } = useParams()
   const [movieDetails, setMovieDetails] = useState(null);
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
@@ -22,9 +20,6 @@ function MovieDetails() {
 
   return (
     <section className='MovieDetails'>
-      <div>
-          <button className="homeButton" onClick={() => navigate('/')}><img src={homeIcon} alt="Home Button" /></button>
-      </div>
       <img src={movieDetails.backdrop_path} alt={`${movieDetails.title} poster`}/>
       <h2 className='movie-title'>{movieDetails.title}</h2>
       <div className="genre-container">

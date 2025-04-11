@@ -1,27 +1,13 @@
 import './App.css';
 // import searchIcon from '../icons/search.png';
-
+import homeIcon from '../icons/home.png'
 import { useState, useEffect } from 'react';
 import { fetchMovies, updateMovieVotes } from '../utilities/api';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation} from 'react-router-dom';
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 
-function App() {
-  /*
-  const [chosenMovie, setChosenMovie] = useState(null)
-
-  function handlePosterClick(movie) {
-    setChosenMovie(movie)
-  }
-  
-  function goHome() {
-    setChosenMovie(null);
-  }
-  */
-  
+function App() { 
   const [movies, setMovies] = useState([]);
   
   useEffect(() => {
@@ -34,25 +20,35 @@ function App() {
     updateMovieVotes(movieId, 'up')
     .then(setMovies(movies.map((movie) => 
       (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count + 1 } : movie
-  )
-))
-}
+    )))
+  }
 
-const subtractVote = (movieId) => {
-  updateMovieVotes(movieId, 'down')
-  .then(setMovies(movies.map((movie) => 
-    (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count - 1 } : movie
-)
-))
-}
+  const subtractVote = (movieId) => {
+    updateMovieVotes(movieId, 'down')
+    .then(setMovies(movies.map((movie) => 
+      (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count - 1 } : movie
+    )))
+  }
 
-return (
-  <main className='App'>
+  function Header() {
+    const navigate = useNavigate()
+    const location = useLocation()
+    
+    const showHomeButton = location.pathname !=='/'
+
+    return (
       <header>
         <h1>rancid tomatillos</h1>
         <div></div>
+        { showHomeButton && (<button className="homeButton" onClick={() => navigate('/')}><img src={homeIcon} alt="Home Button" /></button>)}
       </header>
+    )
+  }
+
+  return (
+    <main className='App'>
       <Router>
+        <Header />
         <Routes>
           <Route path="/"
           element={<MoviesContainer 
@@ -70,27 +66,5 @@ return (
 
 export default App;
 
-/*
-return (
-  <main className='App'>
-      <header>
-        <h1>rancid tomatillos</h1>
-        <div></div>
-        {chosenMovie && (<button className="homeButton" onClick={goHome}><img src={homeIcon} alt="Home Button" /></button>)}
-      </header>
-      {chosenMovie ? ( 
-        <MovieDetails movie={chosenMovie} goHome={goHome} /> 
-      ) : ( 
-        <MoviesContainer 
-        movies={movies} 
-        onAddVote={addVote} 
-        onSubtractVote={subtractVote}
-        onPosterClick={handlePosterClick} 
-        />
-      )}
-    </main>
-  );
-}
-*/
 
 
