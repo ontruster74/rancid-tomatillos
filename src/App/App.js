@@ -1,5 +1,5 @@
 import './App.css';
-import searchIcon from '../icons/search.png';
+// import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png'
 
 // Example imports (for later):
