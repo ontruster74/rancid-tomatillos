@@ -35,6 +35,7 @@ p {
 .homeButton {
   width: 50px;
   background-image: linear-gradient(to right, #3e49b1, purple);
+  border-radius: 5px;
 }
 
 .homeButton:hover {
