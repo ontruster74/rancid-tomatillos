@@ -1,39 +1,42 @@
 import './MovieDetails.css';
-// import movieDetails from '../data/movie_details';
 import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom'
 
-function MovieDetails({ movie }) {
-  const [movieDetails, setMovieDetails] = useState(null);
-  const [error, setError] = useState(false)
+function MovieDetails() {
+  const { id } = useParams()
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${movie.id}`)
-    .then(response => response.json())
-    .then(data => setMovieDetails(data))
-    .catch(error => {
-      console.error("There was an error fetching movie details:", error);
-      return setError(true); 
-    });
-  }, [movie.id]);
+    const fetchMovieDetails = async () => {
+      try {
+          const response = await fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
+          const data = await response.json()
+          setMovie(data)
+      } catch(error) {
+         console.error("There was an error fetching movie details:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
 
-  if (error){
-    return <p className="error-message">Oh No! There was an error fetching movie details</p>
-  }
+    fetchMovieDetails()
+  }, [id]);
 
-  if (!movieDetails) {
-    return <p>No details found for this movie</p>
+  if (!movie) {
+    return <p>No details found for this movie: {id}</p>
   }
 
   return (
     <section className='MovieDetails'>
-      <img src={movieDetails.backdrop_path} alt={`${movieDetails.title} poster`}/>
-      <h2 className='movie-title'>{movieDetails.title}</h2>
+      <img src={movie.backdrop_path} alt={`${movie.title} poster`}/>
+      <h2 className='movie-title'>{movie.title}</h2>
       <div className="genre-container">
-        {movieDetails.genre_ids.map((genre, index) => (
+        {movie.genre_ids.map((genre, index) => (
           <div key={index} className="genre-tag">{genre}</div>
         ))}
       </div>
-      <p className="movie-overview">{movieDetails.overview}</p>
+      <p className="movie-overview">{movie.overview}</p>
     </section>
   );
 }

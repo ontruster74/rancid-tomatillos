@@ -123,4 +123,5 @@ describe('Voting Updates', () => {
       expect(updatedVotes).to.equal(initialVotes - 1)
     }) 
   })
+
 })
