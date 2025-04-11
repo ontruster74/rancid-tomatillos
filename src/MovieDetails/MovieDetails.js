@@ -12,12 +12,12 @@ function MovieDetails({ movie }) {
     .then(data => setMovieDetails(data))
     .catch(error => {
       console.error("There was an error fetching movie details:", error);
-      setError(true);
+      return setError(true); 
     });
   }, [movie.id]);
 
   if (error){
-    return <p className-="error-message">Oh No! There was an error fetching movie details</p>
+    return <p className="error-message">Oh No! There was an error fetching movie details</p>
   }
 
   if (!movieDetails) {

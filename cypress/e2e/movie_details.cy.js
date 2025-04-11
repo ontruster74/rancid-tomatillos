@@ -46,14 +46,12 @@ describe('template spec', () => {
     cy.get(".MovieDetails").should("not.exist")
   })
 
-  it("Should return an error if the movie id does not exist", () => {
-    cy.intercept("GET", "**/movies/*", { forceNetworkError: true
-      // statusCode: 500,
-    })
+  it("Should return an error if the network fails", () => {
+    cy.intercept("GET", "**/movies/*", { forceNetworkError: true }).as("getMovieDetails")
     cy.visit("http://localhost:3000")
     cy.get(".MoviePoster img").first().click()
-    cy.get(".error-message").should("exist")
+    cy.wait("@getMovieDetails")
+    cy.get(".error-message").should("be.visible")
   })
 });
 
-// { forceNetworkError: true }
