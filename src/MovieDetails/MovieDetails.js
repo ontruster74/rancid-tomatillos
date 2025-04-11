@@ -4,30 +4,39 @@ import { useParams, useNavigate } from 'react-router-dom'
 
 function MovieDetails() {
   const { id } = useParams()
-  const [movieDetails, setMovieDetails] = useState(null);
-  const navigate = useNavigate()
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
-    .then(response => response.json())
-    .then(data => setMovieDetails(data))
-    .catch(error => console.error("There was an error fetching movie details:", error));
+    const fetchMovieDetails = async () => {
+      try {
+          const response = await fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
+          const data = await response.json()
+          setMovie(data)
+      } catch(error) {
+         console.error("There was an error fetching movie details:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchMovieDetails()
   }, [id]);
 
-  if (!movieDetails) {
-    return <p>No details found for this movie</p>
+  if (!movie) {
+    return <p>No details found for this movie: {id}</p>
   }
 
   return (
     <section className='MovieDetails'>
-      <img src={movieDetails.backdrop_path} alt={`${movieDetails.title} poster`}/>
-      <h2 className='movie-title'>{movieDetails.title}</h2>
+      <img src={movie.backdrop_path} alt={`${movie.title} poster`}/>
+      <h2 className='movie-title'>{movie.title}</h2>
       <div className="genre-container">
-        {movieDetails.genre_ids.map((genre, index) => (
+        {movie.genre_ids.map((genre, index) => (
           <div key={index} className="genre-tag">{genre}</div>
         ))}
       </div>
-      <p className="movie-overview">{movieDetails.overview}</p>
+      <p className="movie-overview">{movie.overview}</p>
     </section>
   );
 }

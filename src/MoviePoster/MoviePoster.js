@@ -1,19 +1,16 @@
 import './MoviePoster.css';
 import upVoteIcon from '../icons/upvote.png'
 import downVoteIcon from '../icons/downvote.png'
-import { useNavigate } from 'react-router-dom';
 
-function MoviePoster({ movie, onPosterClick, onAddVote, onSubtractVote }) {
-  const { id, title, poster_path, vote_count } = movie;
-  const navigate = useNavigate()
+function MoviePoster({ movie, onClick, onAddVote, onSubtractVote }) {
 
   return (
     <section className='MoviePoster' >
-      <img src={poster_path} alt={`${title} poster`} onClick={onPosterClick} />
+      <img src={movie.poster_path} alt={`${movie.title} poster`} onClick={onClick} />
       <div className='VoteFooter'>
-        <button className="VoteButton" onClick={() => onSubtractVote(id)}><img src={downVoteIcon} alt="Dislike Button" /></button>
-        <p className="VoteCount">{vote_count}</p>
-        <button className="VoteButton" onClick={() => onAddVote(id)}><img src={upVoteIcon} alt="Like Button" /></button>
+        <button className="VoteButton" onClick={() => onSubtractVote(movie.id)}><img src={downVoteIcon} alt="Dislike Button" /></button>
+        <p className="VoteCount">{movie.vote_count}</p>
+        <button className="VoteButton" onClick={() => onAddVote(movie.id)}><img src={upVoteIcon} alt="Like Button" /></button>
       </div>
     </section>
   );
