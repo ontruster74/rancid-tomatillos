@@ -1,7 +1,7 @@
 # Rancid Tomatillos 
 
 ## Overview of project and goals: 
-   - This project allows the user to see a grid of various movie posters, with their popularity vote count displayed underneath each poster image. There are up and down arrows on either side of the vote count that will increase or decrese the votes based on which arrow you input. 
+   - This project allows the user to see a grid of various movie posters, with their popularity vote count displayed underneath each poster image. There are up and down arrows on either side of the vote count that will increase or decrease the votes based on which one the user clicks. 
    
    - A user is able to see a specific movie's details when they click on the movie poster. This takes them to a new page, with the movie id allowing them to use the back arrow to go back to the home page. There is also a Home Button that appears once you open a movies deatils that, when clicked, will navigate you back to the home page.  
 
