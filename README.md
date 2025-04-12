@@ -13,7 +13,7 @@
       [Rancid Tomatillos API](https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies)
 
 ## Challeneges, Wins and any other reflections
-   - As a win, we both feel that we worked very well together as a pair, and were able to deligate tasks efficiently and in an organized manner. 
+   - As a win, we both feel that we worked very well together as a pair, and were able to delagate tasks efficiently and in an organized manner. 
    - This project was broken down in a very understandable format, and allowed for easy learning of the concepts involved. 
 
    - Challenges: 
