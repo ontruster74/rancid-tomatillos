@@ -1,4 +1,3 @@
-import movieDetails from "../../src/data/movie_details"
 
 describe('template spec', () => {
   beforeEach(() => {
@@ -70,7 +69,6 @@ describe('template spec', () => {
 
   it("Should display an error message if user visits a URL with invalid movie id", () => {
     cy.intercept("GET", "https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/2", {
-      statusCode: 200,
       body: { error: "Movie not found" }
     }).as("getMovieDetails");
   

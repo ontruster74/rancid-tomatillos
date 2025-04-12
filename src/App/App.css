@@ -25,5 +25,13 @@ p {
   cursor: pointer;
 }
 
+.error-message {
+  border-radius: 5px;
+  background: blueviolet;
+  color: chartreuse;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
 
 

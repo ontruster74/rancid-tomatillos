@@ -1,6 +1,4 @@
 .MoviePoster {
-    /* border: 2px solid #ccc; */
-    /* padding: 10px; */
     width: 200px;
     transition: all 0.2s ease;
     height: auto;
@@ -34,10 +32,6 @@
         transform: translate3d(0, 0, 1px) rotate(360deg);
     }
 }
-
-/* h2 {
-    display: none;
-} */
 
 .VoteFooter {
     display: flex;
