@@ -1,5 +1,6 @@
 import './App.css';
 import Header from '../Header/Header'
+import NotFound from '../NotFound/NotFound'
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
 
@@ -9,13 +10,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() { 
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true)
   
   useEffect(() => {
+    setLoading(true)
     fetchMovies()
     .then((movieData) => {setMovies(movieData)})
     .catch((error) => {console.error('Something went wrong while fetching movie data:', error)})
+    .finally(setLoading(false))
   }, [])
   
+  if (loading) {
+    return <p>Loading movies...</p>
+  }
+
   const addVote = (movieId) => {
     updateMovieVotes(movieId, 'up')
     .then(setMovies(movies.map((movie) => 
@@ -43,6 +51,8 @@ function App() {
             />} />
           <Route path="/movies/:id"
           element={<MovieDetails />} />
+          <Route path="*"
+          element={<NotFound />} />
         </Routes>
       </Router>
     </main>

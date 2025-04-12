@@ -6,6 +6,7 @@ function MovieDetails() {
   const { id } = useParams()
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -19,11 +20,17 @@ function MovieDetails() {
           }
       } catch(error) {
          setError(error.message)
+      } finally {
+        setLoading(false)
       }
     }
 
     fetchMovieDetails()
   }, [id]);
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
 
   if (!movie) {
     return <p>No details found for this movie.</p>
