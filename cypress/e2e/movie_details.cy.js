@@ -12,7 +12,7 @@ describe('template spec', () => {
       fixture:"movie_details"
     }).as("getMovieDetails")
 
-    cy.visit('http://localhost:3000/')
+    cy.visit('https://rancid-tomatillos-app-9beba7cae451.herokuapp.com/')
     cy.wait("@getMovies")
   })
   
@@ -60,7 +60,7 @@ describe('template spec', () => {
 
   it("Should return an error if the network fails", () => {
     cy.intercept("GET", "**/movies/*", { forceNetworkError: true }).as("getMovieDetails")
-    cy.visit("http://localhost:3000")
+    cy.visit("https://rancid-tomatillos-app-9beba7cae451.herokuapp.com/")
 
     cy.get(".MoviePoster img").first().click()
     cy.wait("@getMovieDetails")
@@ -74,7 +74,7 @@ describe('template spec', () => {
       body: { error: "Movie not found" }
     }).as("getMovieDetails");
   
-    cy.visit("http://localhost:3000/movies/2");
+    cy.visit("https://rancid-tomatillos-app-9beba7cae451.herokuapp.com/movies/2");
   
     cy.get(".error-message").should("be.visible");
     cy.contains("Uh Oh! No movie found with id: 2").should("exist");
