@@ -18,7 +18,7 @@
 
    - Challenges: 
       - Logan: Honestly one of the largest challange I faced on this project was just an issue of syntax and typos such as accidentally having a `-` in front of an `=` or other annoyances. 
-      - Rig: I found it diffiult to keep track of all the myriad details needed in order to meet the project's evaluation requirements, but out Projects board helped with that immensely.
+      - Rig: I found it difficult to keep track of all the myriad details needed in order to meet the project's evaluation requirements, but out Projects board helped with that immensely.
 
 ## Link to the deployed site
    https://rancid-tomatillos-app-9beba7cae451.herokuapp.com/
