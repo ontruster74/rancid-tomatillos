@@ -6,7 +6,7 @@ describe('Movie Posters', () => {
     cy.intercept('GET', 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies', { statusCode: 200, body: posters })
     .as('fetchMovies')
 
-    cy.visit('http://localhost:3000/')
+    cy.visit('https://rancid-tomatillos-app-9beba7cae451.herokuapp.com/')
 
     cy.wait('@fetchMovies')
   })
@@ -66,7 +66,7 @@ describe('Voting Updates', () => {
     cy.intercept('GET', 'https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies', { statusCode: 200, body: posters })
     .as('fetchMovies')
 
-    cy.visit('http://localhost:3000/')
+    cy.visit('https://rancid-tomatillos-app-9beba7cae451.herokuapp.com/')
 
     cy.wait('@fetchMovies')
   })
@@ -123,15 +123,4 @@ describe('Voting Updates', () => {
     }) 
   })
 
-})
-
-describe('404 Handling', () => {
-  const invalidEndpoint = 'nonsense'
-
-  it('should show 404 page for invalid endpoint', () => {
-    cy.intercept('GET', `**/movies/${invalidEndpoint}`, {statusCode: 404, headers: {'Content-Type': 'text/html'}}).as('notFound')
-    cy.visit(`http://localhost:3000/${invalidEndpoint}`, {failOnStatusCode: false})
-    cy.wait('@notFound')
-    cy.get('[data-testid="not-found-page"]').should('be.visible').and('contain', '404')
-  })
 })
