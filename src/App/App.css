@@ -26,7 +26,6 @@ h1 {
 p {
   font-size: 20px;
   text-align: center;
-  /* margin-top: 10px; */
   color: black;
   background-color: white;
   border-radius: 0px 0px 10px 10px;
@@ -42,4 +41,12 @@ p {
   cursor: pointer;
 }
 
+.error-message {
+  border-radius: 5px;
+  background: blueviolet;
+  color: chartreuse;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
 

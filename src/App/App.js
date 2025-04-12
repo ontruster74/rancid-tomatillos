@@ -1,5 +1,4 @@
 import './App.css';
-// import searchIcon from '../icons/search.png';
 import homeIcon from '../icons/home.png'
 import { useState, useEffect } from 'react';
 import { fetchMovies, updateMovieVotes } from '../utilities/api';
@@ -65,6 +64,3 @@ function App() {
 }
 
 export default App;
-
-
-
