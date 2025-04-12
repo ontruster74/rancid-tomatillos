@@ -28,9 +28,18 @@ img {
 }
 
 .movie-title {
-background-color: white;
-display: flex;
-justify-content: center;
-color: indigo;
-padding: 5px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    color: indigo;
+    padding: 5px;
+}
+
+.error-message {
+    border-radius: 5px;
+    background: blueviolet;
+    color: chartreuse;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
 }
