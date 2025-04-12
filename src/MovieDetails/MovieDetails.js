@@ -1,10 +1,12 @@
 import './MovieDetails.css';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom'
 
 function MovieDetails() {
   const { id } = useParams()
   const [movie, setMovie] = useState(null);
+  const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -18,7 +20,12 @@ function MovieDetails() {
             return;
           }
           setMovie(data)
+
+          if(!response.ok) {
+            throw new Error(`Something went wrong while fetching movie details. Status: ${response.status}`)
+          }
       } catch(error) {
+         setError(error.message)
          console.error("There was an error fetching movie details:", error)
          setError(true);
       } finally {
@@ -28,6 +35,10 @@ function MovieDetails() {
 
     fetchMovieDetails()
   }, [id]);
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
   
   if (error) {
     return <p className="error-message"><strong>Uh Oh! No movie found with id: {id}</strong> </p>
