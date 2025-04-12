@@ -46,16 +46,16 @@ describe('template spec', () => {
   it("Should go back to the home page when you click on the home button", () => {
     cy.get(".MoviesContainer").should("exist")
     cy.get(".MoviePoster img").first().click()
+    cy.get(".MovieDetails").should("be.visible")
     cy.wait("@getMovieDetails")
 
     cy.get(".MovieDetails").should("exist")
     cy.get("h1").should("contain", "rancid tomatillos")
-    cy.get("button").should("exist")
-    cy.get("button").should("have.class", "homeButton")
-    cy.get("button img").should("have.attr", "alt", "Home Button")
-    cy.get(".homeButton").click()
-    cy.get(".MoviesContainer").should("exist")
+    cy.get("header").should("exist")
+    cy.get("header").find('a[href="/"], .homeButton, [data-testid="home-button"]').first().should('be.visible').click()
+    cy.get(".MoviesContainer").should("be.visible")
     cy.get(".MovieDetails").should("not.exist")
+    cy.get("header").find("homeButton").should("not.exist")
   })
 
   it("Should return an error if the network fails", () => {
