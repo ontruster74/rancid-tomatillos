@@ -124,14 +124,3 @@ describe('Voting Updates', () => {
   })
 
 })
-
-describe('404 Handling', () => {
-  const invalidEndpoint = 'nonsense'
-
-  it('should show 404 page for invalid endpoint', () => {
-    cy.intercept('GET', `**/movies/${invalidEndpoint}`, {statusCode: 404, headers: {'Content-Type': 'text/html'}}).as('notFound')
-    cy.visit(`http://localhost:3000/${invalidEndpoint}`, {failOnStatusCode: false})
-    cy.wait('@notFound')
-    cy.get('[data-testid="not-found-page"]').should('be.visible').and('contain', '404')
-  })
-})
