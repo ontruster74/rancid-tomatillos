@@ -1,4 +1,5 @@
 import './App.css';
+
 import Header from '../Header/Header'
 import NotFound from '../NotFound/NotFound'
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
@@ -60,6 +61,3 @@ function App() {
 }
 
 export default App;
-
-
-
