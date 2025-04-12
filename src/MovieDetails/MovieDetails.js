@@ -1,11 +1,11 @@
 import './MovieDetails.css';
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 function MovieDetails() {
   const { id } = useParams()
   const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -13,10 +13,12 @@ function MovieDetails() {
           const response = await fetch(`https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${id}`)
           const data = await response.json()
           setMovie(data)
+
+          if(!response.ok) {
+            throw new Error(`Something went wrong while fetching movie details. Status: ${response.status}`)
+          }
       } catch(error) {
-         console.error("There was an error fetching movie details:", error)
-      } finally {
-        setLoading(false)
+         setError(error.message)
       }
     }
 
@@ -24,7 +26,7 @@ function MovieDetails() {
   }, [id]);
 
   if (!movie) {
-    return <p>No details found for this movie: {id}</p>
+    return <p>No details found for this movie.</p>
   }
 
   return (

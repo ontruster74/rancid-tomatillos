@@ -1,0 +1,24 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+  
+h1 {
+    color: white;
+    font-size: 56px;
+    letter-spacing: 5px;
+    border-radius: 10px;
+    background-image:linear-gradient(to right, #3e49b1, purple) ;
+}
+
+.homeButton {
+    width: 50px;
+    background-image: linear-gradient(to right, #3e49b1, purple);
+    border-radius: 5px;
+}
+  
+.homeButton:hover {
+    cursor: pointer;
+}

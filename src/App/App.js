@@ -1,11 +1,11 @@
 import './App.css';
-// import searchIcon from '../icons/search.png';
-import homeIcon from '../icons/home.png'
-import { useState, useEffect } from 'react';
-import { fetchMovies, updateMovieVotes } from '../utilities/api';
-import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation} from 'react-router-dom';
+import Header from '../Header/Header'
 import MoviesContainer from '../MoviesContainer/MoviesContainer';
 import MovieDetails from '../MovieDetails/MovieDetails';
+
+import { useState, useEffect } from 'react';
+import { fetchMovies, updateMovieVotes } from '../utilities/api';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() { 
   const [movies, setMovies] = useState([]);
@@ -28,21 +28,6 @@ function App() {
     .then(setMovies(movies.map((movie) => 
       (movie.id === movieId) ? { ...movie, vote_count: movie.vote_count - 1 } : movie
     )))
-  }
-
-  function Header() {
-    const navigate = useNavigate()
-    const location = useLocation()
-    
-    const showHomeButton = location.pathname !=='/'
-
-    return (
-      <header>
-        <h1>rancid tomatillos</h1>
-        <div></div>
-        { showHomeButton && (<button className="homeButton" onClick={() => navigate('/')}><img src={homeIcon} alt="Home Button" /></button>)}
-      </header>
-    )
   }
 
   return (

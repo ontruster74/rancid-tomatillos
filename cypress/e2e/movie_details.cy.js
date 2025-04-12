@@ -33,25 +33,29 @@ describe('template spec', () => {
     cy.get("p").should("contain", "A newly dead New England couple seeks help from a deranged demon exorcist to scare an affluent New York family out of their home.")
   })
   
-  it("Should got back to the home page when you click on the home button", () => {
+  it("Should go back to the home page when you click on the home button", () => {
     cy.get(".MoviesContainer").should("exist")
     cy.get(".MoviePoster img").first().click()
-    cy.get(".MovieDetails").should("exist")
+    cy.get(".MovieDetails").should("be.visible")
     cy.get("h1").should("contain", "rancid tomatillos")
-    cy.get("button").should("exist")
-    cy.get("button").should("have.class", "homeButton")
-    cy.get("button img").should("have.attr", "alt", "Home Button")
-    cy.get(".homeButton").click()
-    cy.get(".MoviesContainer").should("exist")
+    cy.get("header").should("exist")
+    cy.get("header").find('a[href="/"], .homeButton, [data-testid="home-button"]').first().should('be.visible').click()
+    cy.get(".MoviesContainer").should("be.visible")
     cy.get(".MovieDetails").should("not.exist")
+    cy.get("header").find("homeButton").should("not.exist")
   })
 
-  it("Should return an error if the network fails", () => {
-    cy.intercept("GET", "**/movies/*", { forceNetworkError: true }).as("getMovieDetails")
-    cy.visit("http://localhost:3000")
-    cy.get(".MoviePoster img").first().click()
-    cy.wait("@getMovieDetails")
-    cy.get(".error-message").should("be.visible")
+  it("Sad path: returns an error for movie details not included in database", () => {
+    const invalidId = '1'
+    cy.intercept("GET", `https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${invalidId}`, { statusCode: 404 , body: {error: "No details found for this movie"}})
+    .as("invalidDetails")
+    cy.visit(`http://localhost:3000/movies/${invalidId}`)
+    cy.wait('@invalidDetails')
+    cy.get('[data-testid="error-message"]')
+    .should('be.visible')
+    .and('contain', '404')
+    .and('contain', 'No details found for this movie.')
+    cy.url().should('include', `/movies/${invalidId}`)
   })
 });
 
