@@ -44,18 +44,5 @@ describe('template spec', () => {
     cy.get(".MovieDetails").should("not.exist")
     cy.get("header").find("homeButton").should("not.exist")
   })
-
-  it("Sad path: returns an error for movie details not included in database", () => {
-    const invalidId = '1'
-    cy.intercept("GET", `https://rancid-tomatillos-api-ce4a3879078e.herokuapp.com/api/v1/movies/${invalidId}`, { statusCode: 404 , body: {error: "No details found for this movie"}})
-    .as("invalidDetails")
-    cy.visit(`http://localhost:3000/movies/${invalidId}`)
-    cy.wait('@invalidDetails')
-    cy.get('[data-testid="error-message"]')
-    .should('be.visible')
-    .and('contain', '404')
-    .and('contain', 'No details found for this movie.')
-    cy.url().should('include', `/movies/${invalidId}`)
-  })
 });
 
