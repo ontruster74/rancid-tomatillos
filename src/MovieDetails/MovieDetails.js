@@ -2,14 +2,13 @@ import './MovieDetails.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom'
 import { useParams, useNavigate } from 'react-router-dom'
-import movieDetails from '../data/movie_details';
+
 
 function MovieDetails() {
   const { id } = useParams()
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
